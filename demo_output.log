@@ -1,0 +1,696 @@
+2025-07-11 17:10:16.755072: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1752279016.777134   70091 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1752279016.783642   70091 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1752279016.801674   70091 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1752279016.801700   70091 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1752279016.801702   70091 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1752279016.801704   70091 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-07-11 17:10:16.806511: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-07-11 17:10:19.301151: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+Disparity Architecture Used: hitnet 
+HITNet(
+  (feature_extractor): feature_extraction_conv(
+    (conv1x_0): Sequential(
+      (0): Sequential(
+        (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (conv2x_0): Sequential(
+      (0): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (conv4x_0): Sequential(
+      (0): Sequential(
+        (0): Conv2d(16, 24, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (conv8x_0): Sequential(
+      (0): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (conv16x_0): Sequential(
+      (0): Sequential(
+        (0): Conv2d(24, 32, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Sequential(
+        (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): Sequential(
+        (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (conv16_8x_0): unetUp(
+      (up_conv1): Sequential(
+        (0): ConvTranspose2d(32, 16, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (reduce_conv2): Sequential(
+        (0): Conv2d(40, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (conv): Sequential(
+        (0): Sequential(
+          (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+      )
+    )
+    (conv8_4x_0): unetUp(
+      (up_conv1): Sequential(
+        (0): ConvTranspose2d(24, 12, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (reduce_conv2): Sequential(
+        (0): Conv2d(36, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (conv): Sequential(
+        (0): Sequential(
+          (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+      )
+    )
+    (conv4_2x_0): unetUp(
+      (up_conv1): Sequential(
+        (0): ConvTranspose2d(24, 12, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (reduce_conv2): Sequential(
+        (0): Conv2d(28, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (conv): Sequential(
+        (0): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+      )
+    )
+    (conv2_1x_0): unetUp(
+      (up_conv1): Sequential(
+        (0): ConvTranspose2d(16, 8, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (reduce_conv2): Sequential(
+        (0): Conv2d(24, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (conv): Sequential(
+        (0): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+      )
+    )
+    (last_conv_1x): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (last_conv_2x): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (last_conv_4x): Conv2d(24, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (last_conv_8x): Conv2d(24, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (last_conv_16x): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (tile_init): INIT(
+    (tile_conv1x): Sequential(
+      (0): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (tile_conv2x): Sequential(
+      (0): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (tile_conv4x): Sequential(
+      (0): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Conv2d(24, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (tile_conv8x): Sequential(
+      (0): Sequential(
+        (0): Conv2d(24, 24, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Conv2d(24, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (tile_conv16x): Sequential(
+      (0): Sequential(
+        (0): Conv2d(32, 32, kernel_size=(4, 4), stride=(4, 4), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    )
+    (tile_fea_dscrpt16x): Sequential(
+      (0): Conv2d(33, 13, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (tile_fea_dscrpt8x): Sequential(
+      (0): Conv2d(25, 13, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (tile_fea_dscrpt4x): Sequential(
+      (0): Conv2d(25, 13, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (tile_fea_dscrpt2x): Sequential(
+      (0): Conv2d(17, 13, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (tile_fea_dscrpt1x): Sequential(
+      (0): Conv2d(17, 13, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (_build_volume_2d16x): BuildVolume2d()
+    (_build_volume_2d8x): BuildVolume2d()
+    (_build_volume_2d4x): BuildVolume2d()
+    (_build_volume_2d2x): BuildVolume2d()
+    (_build_volume_2d1x): BuildVolume2d()
+  )
+  (tile_warp): TileWarping(
+    (disp_up): DispUpsampleBySlantedPlane(
+      (DUC): PixelShuffle(upscale_factor=4)
+    )
+    (build_l1_volume_chaos): BuildVolume2dChaos()
+  )
+  (tile_update0): TileUpdate(
+    (disp_upsample): SlantDUpsampleBySlantedPlaneT4T4(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (tile_warping): TileWarping(
+      (disp_up): DispUpsampleBySlantedPlane(
+        (DUC): PixelShuffle(upscale_factor=4)
+      )
+      (build_l1_volume_chaos): BuildVolume2dChaos()
+    )
+    (prop_warp0): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (prop_warp1): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update1): TileUpdate(
+    (disp_upsample): SlantDUpsampleBySlantedPlaneT4T4(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (tile_warping): TileWarping(
+      (disp_up): DispUpsampleBySlantedPlane(
+        (DUC): PixelShuffle(upscale_factor=4)
+      )
+      (build_l1_volume_chaos): BuildVolume2dChaos()
+    )
+    (prop_warp0): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (prop_warp1): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 34, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update2): TileUpdate(
+    (disp_upsample): SlantDUpsampleBySlantedPlaneT4T4(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (tile_warping): TileWarping(
+      (disp_up): DispUpsampleBySlantedPlane(
+        (DUC): PixelShuffle(upscale_factor=4)
+      )
+      (build_l1_volume_chaos): BuildVolume2dChaos()
+    )
+    (prop_warp0): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (prop_warp1): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 34, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update3): TileUpdate(
+    (disp_upsample): SlantDUpsampleBySlantedPlaneT4T4(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (tile_warping): TileWarping(
+      (disp_up): DispUpsampleBySlantedPlane(
+        (DUC): PixelShuffle(upscale_factor=4)
+      )
+      (build_l1_volume_chaos): BuildVolume2dChaos()
+    )
+    (prop_warp0): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (prop_warp1): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 34, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update4): TileUpdate(
+    (disp_upsample): SlantDUpsampleBySlantedPlaneT4T4(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (tile_warping): TileWarping(
+      (disp_up): DispUpsampleBySlantedPlane(
+        (DUC): PixelShuffle(upscale_factor=4)
+      )
+      (build_l1_volume_chaos): BuildVolume2dChaos()
+    )
+    (prop_warp0): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (prop_warp1): Sequential(
+      (0): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 34, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update4_1): PostTileUpdateNoUp(
+    (conv0): Sequential(
+      (0): Conv2d(40, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv1): Sequential(
+      (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (3): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update5): PostTileUpdate(
+    (disp_upsample): SlantD2xUpsampleBySlantedPlaneT4T2(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv1): Sequential(
+      (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (2): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (3): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (tile_update6): FinalTileUpdate(
+    (disp_upsample): DispUpsampleBySlantedPlane(
+      (DUC): PixelShuffle(upscale_factor=2)
+    )
+    (conv0): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (conv1): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+    (resblocks): Sequential(
+      (0): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+      (1): ResBlock(
+        (conv1): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): LeakyReLU(negative_slope=0.2, inplace=True)
+        )
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (relu): LeakyReLU(negative_slope=0.2, inplace=True)
+      )
+    )
+    (lastconv): Conv2d(16, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (upsample): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+    (relu): ReLU()
+  )
+  (prop_disp_upsample64x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=64)
+  )
+  (prop_disp_upsample32x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=32)
+  )
+  (prop_disp_upsample16x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=16)
+  )
+  (prop_disp_upsample8x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=8)
+  )
+  (prop_disp_upsample4x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=4)
+  )
+  (prop_disp_upsample2x): DispUpsampleBySlantedPlane(
+    (DUC): PixelShuffle(upscale_factor=2)
+  )
+  (dxdy_upsample64x): UpsamplingNearest2d(scale_factor=64.0, mode='nearest')
+  (dxdy_upsample32x): UpsamplingNearest2d(scale_factor=32.0, mode='nearest')
+  (dxdy_upsample16x): UpsamplingNearest2d(scale_factor=16.0, mode='nearest')
+  (dxdy_upsample8x): UpsamplingNearest2d(scale_factor=8.0, mode='nearest')
+  (dxdy_upsample4x): UpsamplingNearest2d(scale_factor=4.0, mode='nearest')
+  (dxdy_upsample2x): UpsamplingNearest2d(scale_factor=2.0, mode='nearest')
+)
+  0%|          | 0/200 [00:00<?, ?it/s]/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/activations/leaky_relu.py:41: UserWarning: Argument `alpha` is deprecated. Use `negative_slope` instead.
+  warnings.warn(
+  0%|          | 0/200 [00:10<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/a/work/alphacore/depth_estimation_stereo_images/demo.py", line 208, in <module>
+    demo()
+  File "/home/a/work/alphacore/depth_estimation_stereo_images/demo.py", line 81, in demo
+    result, pred_bboxes = obj_det.predict(img)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/work/alphacore/depth_estimation_stereo_images/object_detector.py", line 41, in predict
+    candidates = self.yolo.model.predict(input_data)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/eager/execute.py", line 53, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+    ^^^^^^^
+TypeError: <tf.Tensor 'YOLOv3Head/Const:0' shape=(1, 76, 76, 3, 2) dtype=float32> is out of scope and cannot be used here. Use return values, explicit Python locals or TensorFlow collections to access it.
+Please see https://www.tensorflow.org/guide/function#all_outputs_of_a_tffunction_must_be_return_values for more information.
+
+<tf.Tensor 'YOLOv3Head/Const:0' shape=(1, 76, 76, 3, 2) dtype=float32> was defined here:
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/demo.py", line 208, in <module>
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/demo.py", line 79, in demo
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/object_detector.py", line 25, in __init__
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/yolov4/tf/__init__.py", line 188, in make_model
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/layer.py", line 866, in __call__
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/layer.py", line 1467, in _maybe_build
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/backend/tensorflow/core.py", line 240, in compute_output_spec
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/yolov4/model/yolov4.py", line 91, in call
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/layer.py", line 866, in __call__
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/layer.py", line 1458, in _maybe_build
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/keras/src/layers/layer.py", line 232, in build_wrapper
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/yolov4/model/head.py", line 54, in build
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/yolov4/model/head.py", line 55, in <listcomp>
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/ops/weak_tensor_ops.py", line 142, in wrapper
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/constant_op.py", line 276, in constant
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/constant_op.py", line 291, in _constant_impl
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/ops.py", line 289, in _create_graph_constant
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/func_graph.py", line 614, in _create_op_internal
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/ops.py", line 2705, in _create_op_internal
+    File "/home/a/work/alphacore/depth_estimation_stereo_images/venv_satya15/lib/python3.11/site-packages/tensorflow/python/framework/ops.py", line 1200, in from_node_def
+
+The tensor <tf.Tensor 'YOLOv3Head/Const:0' shape=(1, 76, 76, 3, 2) dtype=float32> cannot be accessed from here, because it was defined in FuncGraph(name=scratch_graph, id=130964694231616), which is out of scope.

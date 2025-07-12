@@ -27,7 +27,7 @@ class PSMNetEstimator:
         self.model = nn.DataParallel(self.model)
         self.model.to(config.DEVICE)
 
-        state_dict = torch.load(config.PSMNET_MODEL_PATH)
+        state_dict = torch.load(config.PSMNET_MODEL_PATH, map_location=config.DEVICE)
         self.model.load_state_dict(state_dict['state_dict'])
 
     def profile(self):

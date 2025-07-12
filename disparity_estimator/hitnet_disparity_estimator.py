@@ -27,9 +27,26 @@ class HitNetEstimator:
     def __init__(self):
         self.model = HITNet(self.get_config())
         print(self.model)
-        self.model = nn.DataParallel(self.model)
-        state_dict = torch.load(config.HITNET_MODEL_PATH)
-        self.model.load_state_dict(state_dict['model'])
+        
+        # Only use DataParallel if CUDA is available
+        if torch.cuda.is_available():
+            self.model = nn.DataParallel(self.model)
+            
+        state_dict = torch.load(config.HITNET_MODEL_PATH, map_location=torch.device(config.DEVICE))
+        
+        # Handle state dict keys with/without 'module.' prefix
+        if torch.cuda.is_available():
+            self.model.load_state_dict(state_dict['model'])
+        else:
+            # Remove 'module.' prefix from keys if present
+            new_state_dict = {}
+            for k, v in state_dict['model'].items():
+                if k.startswith('module.'):
+                    new_state_dict[k[7:]] = v  # Remove 'module.' prefix
+                else:
+                    new_state_dict[k] = v
+            self.model.load_state_dict(new_state_dict)
+            
         self.model.to(config.DEVICE)
 
     def profile(self):
@@ -76,9 +93,9 @@ class HitNetEstimator:
         right_pad = 1280 - w
         assert top_pad > 0 and right_pad > 0
         # pad images
-        left_img = np.lib.pad(left_img, ((0, 0), (top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
-        right_img = np.lib.pad(right_img, ((0, 0), (top_pad, 0), (0, right_pad)), mode='constant',
-                               constant_values=0)
+        left_img = np.pad(left_img, ((0, 0), (top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
+        right_img = np.pad(right_img, ((0, 0), (top_pad, 0), (0, right_pad)), mode='constant',
+                           constant_values=0)
         return torch.from_numpy(left_img).unsqueeze(0), torch.from_numpy(right_img).unsqueeze(0)
         """
         imgL = cv2.imread(left_image, cv2.IMREAD_COLOR)
@@ -104,8 +121,11 @@ class HitNetEstimator:
         self.model.eval()
         outputs = self.model(left_img.to(config.DEVICE), right_img.to(config.DEVICE))
         prop_disp_pyramid = outputs['prop_disp_pyramid']
-        print("prop_disp_pyramid: {}".format())
-        return prop_disp_pyramid
+        print("prop_disp_pyramid: {}".format(len(prop_disp_pyramid)))
+        # Return the finest resolution disparity map (last in the pyramid)
+        # Convert from tensor to numpy array and squeeze batch dimension
+        disparity_map = prop_disp_pyramid[-1].squeeze().cpu().detach().numpy()
+        return disparity_map
 
 if __name__ == "__main__":
     estimator = HitNetEstimator()

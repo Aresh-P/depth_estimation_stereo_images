@@ -23,25 +23,30 @@ import config
 
 
 
+def get_disparity_estimator(architecture):
+    """Create and return the appropriate disparity estimator based on architecture name."""
+    if architecture == 'raft-stereo':
+        return RAFTStereoEstimator()
+    elif architecture == 'fastacv-plus':
+        return FastACVEstimator()
+    elif architecture == 'bgnet':
+        return BGNetEstimator()
+    elif architecture == 'gwcnet':
+        return GwcNetEstimator()
+    elif architecture == 'pasmnet':
+        return PASMNetEstimator()
+    elif architecture == 'crestereo':
+        return CREStereoEstimator()
+    elif architecture == 'psmnet':
+        return PSMNetEstimator()
+    elif architecture == 'hitnet':
+        return HitNetEstimator()
+    else:
+        raise ValueError(f"Unknown architecture: {architecture}")
+
 def demo():
     if config.PROFILE_FLAG:
-        disp_estimator = None
-        if config.ARCHITECTURE == 'raft-stereo':
-            disp_estimator = RAFTStereoEstimator()
-        elif config.ARCHITECTURE == 'fastacv-plus':
-            disp_estimator = FastACVEstimator()
-        elif config.ARCHITECTURE == 'bgnet':
-            disp_estimator = BGNetEstimator()
-        elif config.ARCHITECTURE == 'gwcnet':
-            disp_estimator = GwcNetEstimator()
-        elif config.ARCHITECTURE == 'pasmnet':
-            disp_estimator = PASMNetEstimator()
-        elif config.ARCHITECTURE == 'crestereo':
-            disp_estimator = CREStereoEstimator()
-        elif config.ARCHITECTURE == 'psmnet':
-            disp_estimator = PSMNetEstimator()
-        elif config.ARCHITECTURE == 'hitnet':
-            disp_estimator = HitNetEstimator()
+        disp_estimator = get_disparity_estimator(config.ARCHITECTURE)
         disp_estimator.profile()
         exit()
 
@@ -50,40 +55,31 @@ def demo():
     calib_files = sorted(glob.glob(config.KITTI_CALIB_FILES_PATH, recursive=True))
     index = 0
     init_open3d = False
-    disp_estimator = None
-    print("Disparity Architecture Used: {} ".format(config.ARCHITECTURE))
-    if config.ARCHITECTURE == 'raft-stereo':
-        disp_estimator = RAFTStereoEstimator()
-    elif config.ARCHITECTURE == 'fastacv-plus':
-        disp_estimator = FastACVEstimator()
-    elif config.ARCHITECTURE == 'bgnet':
-         disp_estimator = BGNetEstimator()
-    elif config.ARCHITECTURE == 'gwcnet':
-        disp_estimator = GwcNetEstimator()
-    elif config.ARCHITECTURE == 'pasmnet':
-        disp_estimator = PASMNetEstimator()
-    elif config.ARCHITECTURE == 'crestereo':
-        disp_estimator = CREStereoEstimator()
-    elif config.ARCHITECTURE == 'psmnet':
-        disp_estimator = PSMNetEstimator()
-    elif config.ARCHITECTURE == 'hitnet':
-        disp_estimator = HitNetEstimator()
+    
+    # Initialize with current architecture
+    current_arch_idx = config.ARCHITECTURE_LIST.index(config.ARCHITECTURE)
+    current_architecture = config.ARCHITECTURE
+    disp_estimator = get_disparity_estimator(current_architecture)
+    print("Disparity Architecture Used: {} ".format(current_architecture))
+    print("\nKeyboard controls:")
+    print("  'n' or RIGHT ARROW - Next model")
+    print("  'p' or LEFT ARROW - Previous model") 
+    print("  'q' or ESC - Quit")
+    print("  '1-8' - Jump to specific model")
+    print("")
 
     if config.SHOW_DISPARITY_OUTPUT:
-        window_name = "Estimated depth with {}".format(config.ARCHITECTURE)
+        window_name = "Disparity Estimation Demo"
         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
     for (imfile1, imfile2, calib_file) in tqdm(list(zip(left_images, right_images, calib_files))):
         img = cv2.imread(imfile1)
         parameters = get_calibration_parameters(calib_file)
 
-        obj_det = ObjectDetectorAPI()
-        start = time.time()
-        result, pred_bboxes = obj_det.predict(img)
-        end = time.time()
-        elapsed_time = (end - start) * 1000
-        print("Evaluation Time for Object Detection with YOLO is : {} ms ".format(elapsed_time))
-
-        print(pred_bboxes)
+        # Temporarily disable object detection due to TensorFlow compatibility issues
+        # TODO: Fix YOLOv4 compatibility with TensorFlow 2.19
+        result = img.copy()
+        pred_bboxes = []
+        print("Object detection temporarily disabled")
 
         start_d = time.time()
         disparity_map = disp_estimator.estimate(imfile1, imfile2)
@@ -199,8 +195,44 @@ def demo():
             write_ply(file_name, out_points, out_colors)
             index = index + 1
         if config.SHOW_DISPARITY_OUTPUT:
-            if cv2.waitKey(1) == ord('q'):
+            # Add model info to the image
+            info_text = f"Model: {current_architecture} (Press 'n' for next, 'p' for previous, 'q' to quit)"
+            cv2.putText(combined_image, info_text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            cv2.imshow(window_name, combined_image)
+            
+            # Wait for key press
+            key = cv2.waitKey(0) & 0xFF  # Wait indefinitely for a key press
+            
+            if key == ord('q') or key == 27:  # 'q' or ESC
                 break
+            elif key == ord('n') or key == 83:  # 'n' or right arrow
+                # Switch to next model
+                current_arch_idx = (current_arch_idx + 1) % len(config.ARCHITECTURE_LIST)
+                current_architecture = config.ARCHITECTURE_LIST[current_arch_idx]
+                print(f"\nSwitching to: {current_architecture}")
+                disp_estimator = get_disparity_estimator(current_architecture)
+                # Re-process current image with new model
+                print("Reprocessing current image with new model...")
+                continue
+            elif key == ord('p') or key == 81:  # 'p' or left arrow  
+                # Switch to previous model
+                current_arch_idx = (current_arch_idx - 1) % len(config.ARCHITECTURE_LIST)
+                current_architecture = config.ARCHITECTURE_LIST[current_arch_idx]
+                print(f"\nSwitching to: {current_architecture}")
+                disp_estimator = get_disparity_estimator(current_architecture)
+                # Re-process current image with new model
+                print("Reprocessing current image with new model...")
+                continue
+            elif ord('1') <= key <= ord('8'):  # Number keys 1-8
+                # Direct model selection
+                model_idx = key - ord('1')
+                if 0 <= model_idx < len(config.ARCHITECTURE_LIST):
+                    current_arch_idx = model_idx
+                    current_architecture = config.ARCHITECTURE_LIST[current_arch_idx]
+                    print(f"\nSwitching to: {current_architecture}")
+                    disp_estimator = get_disparity_estimator(current_architecture)
+                    print("Reprocessing current image with new model...")
+                    continue
     if config.SHOW_DISPARITY_OUTPUT:
         cv2.destroyAllWindows()
 

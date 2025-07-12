@@ -20,9 +20,9 @@ class PASMNetEstimator:
     def __init__(self):
         self.model = PASMnet().to(config.DEVICE)
         if config.PASMNET_MODEL_PATH.split('.')[-1] == 'tar':
-            ckpt = torch.load(config.PASMNET_MODEL_PATH)['state_dict']
+            ckpt = torch.load(config.PASMNET_MODEL_PATH, map_location=config.DEVICE)['state_dict']
         else:
-            ckpt = torch.load(config.PASMNET_MODEL_PATH)
+            ckpt = torch.load(config.PASMNET_MODEL_PATH, map_location=config.DEVICE)
         self.model.load_state_dict(ckpt)
         self.model.eval()
 

@@ -7,7 +7,11 @@ import torch
 import torch.nn.functional as F
 import time
 def disp_warp(right_input, disparity_samples, padding_mode='border'):
-    device = right_input.get_device()
+    # Handle both GPU and CPU tensors
+    if right_input.is_cuda:
+        device = right_input.get_device()
+    else:
+        device = right_input.device
     left_y_coordinate = torch.arange(0.0, right_input.size()[3], device=device).repeat(right_input.size()[2])
     left_y_coordinate = left_y_coordinate.view(right_input.size()[2], right_input.size()[3])
     left_y_coordinate = torch.clamp(left_y_coordinate, min=0, max=right_input.size()[3] - 1)

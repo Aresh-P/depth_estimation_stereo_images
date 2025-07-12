@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import config
 
 
 class DispUpsampleBySlantedPlane(nn.Module):
@@ -68,7 +69,7 @@ class BuildVolume2d(nn.Module):
 
     def forward(self, feat_l, feat_r):
         padded_feat_r = F.pad(feat_r, [self.maxdisp-1, 0, 0, 0])
-        cost = torch.zeros((feat_l.size()[0], self.maxdisp, feat_l.size()[2], feat_l.size()[3]), device='cuda')
+        cost = torch.zeros((feat_l.size()[0], self.maxdisp, feat_l.size()[2], feat_l.size()[3]), device=feat_l.device)
         for i in range(0, self.maxdisp):
             if i > 0:
                 # pdb.set_trace()

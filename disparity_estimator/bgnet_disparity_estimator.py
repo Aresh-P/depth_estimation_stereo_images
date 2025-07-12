@@ -33,7 +33,7 @@ class BGNetEstimator:
     def __init__(self):
         self.model = BGNet_Plus().to(config.DEVICE)
         print(self.model)
-        checkpoint = torch.load(config.BGNET_PLUS_MODEL_PATH, map_location=lambda storage, loc: storage)
+        checkpoint = torch.load(config.BGNET_PLUS_MODEL_PATH, map_location=torch.device(config.DEVICE))
         self.model.load_state_dict(checkpoint)
         self.model.eval()
 

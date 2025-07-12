@@ -1,6 +1,6 @@
-KITTI_CALIB_FILES_PATH="/media/satya/740516b2-56c1-4cf3-9ae2-87b56289b807/work/project/segmentation/datasets/kitti_stereo_2015/data_scene_flow_calib/testing/calib_cam_to_cam/*.txt"
-KITTI_LEFT_IMAGES_PATH="/media/satya/740516b2-56c1-4cf3-9ae2-87b56289b807/work/project/segmentation/datasets/kitti_stereo_2015/testing/image_2/*.png"
-KITTI_RIGHT_IMAGES_PATH="/media/satya/740516b2-56c1-4cf3-9ae2-87b56289b807/work/project/segmentation/datasets/kitti_stereo_2015/testing/image_3/*.png"
+KITTI_CALIB_FILES_PATH="kitti/calibration/testing/calib_cam_to_cam/*.txt"
+KITTI_LEFT_IMAGES_PATH="kitti/testing/image_2/*.png"
+KITTI_RIGHT_IMAGES_PATH="kitti/testing/image_3/*.png"
 
 RAFT_STEREO_MODEL_PATH = "pretrained_models/raft_stereo/raft-stereo_20000.pth"
 FASTACV_MODEL_PATH = "pretrained_models/fast_acvnet/kitti_2015.ckpt"
@@ -11,14 +11,22 @@ PASMNET_MODEL_PATH = "pretrained_models/pasmnet/PASMnet_192_kitti_epoch5101.pth.
 CRESTEREO_MODEL_PATH = "pretrained_models/crestereo/crestereo_eth3d.pth"
 HITNET_MODEL_PATH = "pretrained_models/hitnet/bestD1_checkpoint.ckpt"
 PSMNET_MODEL_PATH = 'pretrained_models/psmnet/pretrained_model_KITTI2015.tar'
-DEVICE = "cuda:0"
-DEVICE1 = "cuda:1"
+
+import torch
+# Automatically detect if CUDA is available and set device accordingly
+if torch.cuda.is_available():
+    DEVICE = "cuda:0"
+    DEVICE1 = "cuda:1"
+else:
+    DEVICE = "cpu"
+    DEVICE1 = "cpu"
 
 
 # raft-stereo=0, fastacv-plus=1, bgnet=2, gwcnet=3, pasmnet=4, crestereo=5, hitnet=6, psmnet=7
 
+# gwcnet runs out of memory on my laptop (8GB)
 ARCHITECTURE_LIST = ["raft-stereo", "fastacv-plus", "bgnet", 'gwcnet', 'pasmnet', 'crestereo', 'hitnet', 'psmnet']
-ARCHITECTURE = ARCHITECTURE_LIST[6]
+ARCHITECTURE = ARCHITECTURE_LIST[7]
 SAVE_POINT_CLOUD = 0
 SHOW_DISPARITY_OUTPUT = 1
 SHOW_3D_PROJECTION = 0

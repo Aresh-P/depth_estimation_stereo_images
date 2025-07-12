@@ -6,6 +6,7 @@ from torch.autograd import Variable
 import torch.nn.functional as F
 import math
 import numpy as np
+import config
 
 def convbn(in_planes, out_planes, kernel_size, stride, pad, dilation):
 
@@ -45,7 +46,7 @@ class BasicBlock(nn.Module):
 class disparityregression(nn.Module):
     def __init__(self, maxdisp):
         super(disparityregression, self).__init__()
-        self.disp = torch.Tensor(np.reshape(np.array(range(maxdisp)),[1, maxdisp,1,1])).cuda()
+        self.disp = torch.Tensor(np.reshape(np.array(range(maxdisp)),[1, maxdisp,1,1])).to(config.DEVICE)
 
     def forward(self, x):
         out = torch.sum(x*self.disp.data,1, keepdim=True)

@@ -29,7 +29,7 @@ DEBUG_FLAG = False
 class RAFTStereoEstimator:
     def __init__(self):
         self.model = torch.nn.DataParallel(RAFTStereo(self.get_internal_args()), device_ids=[0])
-        self.model.load_state_dict(torch.load(config.RAFT_STEREO_MODEL_PATH))
+        self.model.load_state_dict(torch.load(config.RAFT_STEREO_MODEL_PATH, map_location=torch.device(config.DEVICE)))
 
     def get_internal_args(self):
         parser = argparse.ArgumentParser()

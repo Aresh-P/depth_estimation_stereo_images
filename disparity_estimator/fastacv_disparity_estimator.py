@@ -45,7 +45,7 @@ class FastACVEstimator:
         self.model = nn.DataParallel(self.model, device_ids=[0])
         self.model.to(config.DEVICE)
 
-        state_dict = torch.load(config.FASTACV_MODEL_PATH)
+        state_dict = torch.load(config.FASTACV_MODEL_PATH, map_location=config.DEVICE)
         self.model.load_state_dict(state_dict['model'])
 
     def profile(self):

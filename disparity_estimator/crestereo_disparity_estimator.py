@@ -14,7 +14,7 @@ from networks.CREStereo.nets import CREStereo
 class CREStereoEstimator:
     def __init__(self):
         self.model = CREStereo(max_disp=256, mixed_precision=False, test_mode=True)
-        self.model.load_state_dict(torch.load(config.CRESTEREO_MODEL_PATH), strict=False)
+        self.model.load_state_dict(torch.load(config.CRESTEREO_MODEL_PATH, map_location=config.DEVICE1), strict=False)
         self.model.to(config.DEVICE1)
         self.model.eval()
         self.n_iter = 20

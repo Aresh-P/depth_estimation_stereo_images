@@ -110,7 +110,11 @@ class BGNet(SubModule):
         wb = index_float   - index_a
 
         list_float = []  
-        device = list_coeffs[0].get_device()
+        # Handle both GPU and CPU tensors
+        if list_coeffs[0].is_cuda:
+            device = list_coeffs[0].get_device()
+        else:
+            device = list_coeffs[0].device
         wa  = wa.view(1,-1,1,1)
         wb  = wb.view(1,-1,1,1)
         wa = wa.to(device)
@@ -121,7 +125,7 @@ class BGNet(SubModule):
         N, _, H, W = guide.shape
         #[H,W]
         hg, wg = torch.meshgrid([torch.arange(0, H), torch.arange(0, W)]) # [0,511] HxW
-        if device >= 0:
+        if list_coeffs[0].is_cuda:
             hg = hg.to(device)
             wg = wg.to(device)
         #[B,H,W,1]

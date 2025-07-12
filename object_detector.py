@@ -18,11 +18,16 @@ if gpus:
 
 
 class ObjectDetectorAPI:
-    def __init__(self):
-        self.yolo = YOLOv4(tiny=True)
+    def __init__(self, use_tiny=False):
+        # Initialize YOLOv4 with the older API
+        self.yolo = YOLOv4(tiny=use_tiny)
         self.yolo.classes = "Yolov4/coco.names"
         self.yolo.make_model()
-        self.yolo.load_weights("Yolov4/yolov4-tiny.weights", weights_type="yolo")
+        # Load appropriate weights
+        if use_tiny:
+            self.yolo.load_weights("Yolov4/yolov4-tiny.weights", weights_type="yolo")
+        else:
+            self.yolo.load_weights("Yolov4/yolov4.weights", weights_type="yolo")
     
     def predict(self, image):
         start_time=time.time()
